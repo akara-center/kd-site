@@ -60,7 +60,8 @@ function connectGallery(gallery) {
   }
   function move(direction) {
     track('gallery_navigate', { gallery: rail.id, direction });
-    const card = rail.firstElementChild;
+    const card = rail.querySelector(':scope > :not([hidden])');
+    if (!card) return;
     const gap = parseFloat(getComputedStyle(card).marginRight) || 0;
     const stride = card.getBoundingClientRect().width + gap;
     const behavior = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
@@ -77,6 +78,21 @@ function connectGallery(gallery) {
   new MutationObserver(sync).observe(rail, {childList:true});
   if ('ResizeObserver' in window) new ResizeObserver(sync).observe(rail);
   else window.addEventListener('resize', sync);
+  const filters = gallery.parentElement.querySelector('.qualification-filters');
+  if (filters) {
+    const buttons = Array.from(filters.querySelectorAll('[data-qualification-filter]'));
+    filters.hidden = false;
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const category = button.dataset.qualificationFilter;
+      buttons.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+      for (const card of rail.children) {
+        card.hidden = category !== 'all' && card.dataset.qualificationCategory !== category;
+      }
+      rail.scrollLeft = 0;
+      sync();
+      track('qualification_filter', { category });
+    }));
+  }
   sync();
 }
 document.querySelectorAll('.gallery').forEach(connectGallery);
@@ -86,7 +102,7 @@ if (certificateDialog) {
   let opener;
   let current = 0;
   let touchStart;
-  const photos = Array.from(document.querySelectorAll('#thanks-rail figure img, #diploma-rail figure img'));
+  let photos = [];
   const enlarged = certificateDialog.querySelector('img');
   const position = certificateDialog.querySelector('.document-position');
   const show = index => {
@@ -97,7 +113,9 @@ if (certificateDialog) {
     position.textContent = `${current + 1} / ${photos.length}`;
   };
   document.querySelectorAll('.document-trigger').forEach(trigger => trigger.addEventListener('click', () => {
-    track('certificate_open', { gallery: trigger.closest('.evidence-list').id });
+    const rail = trigger.closest('.evidence-list');
+    track('certificate_open', { gallery: rail.id });
+    photos = Array.from(rail.querySelectorAll('figure:not([hidden]) img'));
     opener = trigger;
     show(photos.indexOf(trigger.closest('figure').querySelector('img')));
     certificateDialog.showModal();
