@@ -141,15 +141,13 @@ dialog button{margin:0 0 .7rem;background:#132234;color:var(--text);border:1px s
  .hero .bodycopy{font-size:1rem;line-height:1.45}
  .portrait{grid-row:1;width:min(63vw,15.3125rem);justify-self:center;margin:0}
  .hero-scene{
-  position:relative;inset:auto;width:min(100vw,27rem);max-width:none;justify-self:center;
+  position:relative;inset:auto;width:100vw;max-width:none;justify-self:center;
   height:auto;aspect-ratio:auto;margin-block:-.7rem -3.7rem;
  }
  .hero-scene img{
   height:auto;
-  mask-image:
-   linear-gradient(to bottom,#000e,#000 10%,#000 55%,#0004 79%,transparent),
-   linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);
-  mask-composite:intersect;
+  mask-image:linear-gradient(to bottom,#000e,#000 10%,#000 55%,#0004 79%,transparent);
+  mask-composite:add;
  }
  .kicker{margin-bottom:.75rem}
  h1{font-size:clamp(2rem,8vw,3rem)}
