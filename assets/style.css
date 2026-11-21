@@ -249,3 +249,10 @@ main p:not(.kicker):not(.note){text-align:justify;hyphens:auto}
 @keyframes return-choice-appear{from{opacity:0;transform:translateY(.5rem)}}
 @keyframes return-choice-point{50%{transform:translateY(-.25rem)}}
 @media(max-width:700px){.about-credentials .more-link{padding-top:.5rem}}
+
+.direction-profile-link{margin-top:1.5rem}
+
+.direction-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:clamp(1rem,3vw,2rem)}
+.direction-metrics>div{display:flex;flex-direction:column;gap:.7rem}
+.direction-metrics dt{color:var(--muted)}
+.direction-metrics dd{order:-1;margin:0;color:var(--blue);font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:clamp(1.65rem,3vw,2.6rem)}

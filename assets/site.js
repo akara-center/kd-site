@@ -34,6 +34,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener(
   target.focus({preventScroll:true});
   target.scrollIntoView();
 }));
+document.addEventListener('click', event => {
+  if (menu.open && !menu.contains(event.target)) menu.open = false;
+});
 menu.addEventListener('toggle', () => { if (menu.open) track('menu_open'); });
 document.querySelectorAll('.question-list details').forEach((question, index) => {
   question.addEventListener('toggle', () => {
@@ -270,7 +273,7 @@ if (contactKind) {
 }
 
 const footerContacts = document.querySelector('.footer-contacts');
-footerContacts?.addEventListener('submit', async event => {
+footerContacts.addEventListener('submit', async event => {
   event.preventDefault();
   const channel = event.submitter?.value;
   if (!channel) return;
