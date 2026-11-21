@@ -131,6 +131,25 @@ dialog button{margin:0 0 .7rem;background:#132234;color:var(--text);border:1px s
 .more-link,.evidence-card .text-action,.menu summary,.menu nav a,.note,.request-form .note,.request-form label,.breadcrumb,.site-footer,dialog .close-document,.preview-slot .photo-slot{color:var(--system-text);font:700 var(--system-size)/1.45 Arial,sans-serif}
 .more-link:hover,.evidence-card .text-action:hover,.breadcrumb:hover,.footer-links a:hover,dialog .close-document:hover{color:var(--blue)}
 .evidence-card .text-action{text-decoration:underline;text-underline-offset:.23em}
+@media (max-width:1024px){
+ .hero-inner:has(> .hero-scene){
+  grid-template-columns:minmax(0,1fr);
+  gap:.6rem;
+  min-height:auto;
+  padding-block:.7rem 1.75rem;
+ }
+ .hero-inner:has(> .hero-scene) .copy{width:min(100%,42rem);justify-self:center}
+ .portrait.hero-scene{
+  position:relative;inset:auto;grid-row:1;justify-self:center;
+  width:min(100vw,47.5rem);max-width:none;height:auto;aspect-ratio:auto;
+  margin-block:-.7rem calc(-1 * clamp(3.7rem,10vw,6rem));
+ }
+ .hero-scene img{
+  height:auto;
+  mask-image:linear-gradient(to bottom,#000e,#000 10%,#000 55%,#0004 79%,transparent);
+  mask-composite:add;
+ }
+}
 @media(max-width:760px){
  .header-inner{min-height:62px;flex-wrap:wrap;padding:.6rem 0}
  .brand{width:156px}.site-nav .nav-cta{display:none}
@@ -140,15 +159,6 @@ dialog button{margin:0 0 .7rem;background:#132234;color:var(--text);border:1px s
  .hero .kicker{font-size:.875rem}
  .hero .bodycopy{font-size:1rem;line-height:1.45}
  .portrait{grid-row:1;width:min(63vw,15.3125rem);justify-self:center;margin:0}
- .hero-scene{
-  position:relative;inset:auto;width:100vw;max-width:none;justify-self:center;
-  height:auto;aspect-ratio:auto;margin-block:-.7rem -3.7rem;
- }
- .hero-scene img{
-  height:auto;
-  mask-image:linear-gradient(to bottom,#000e,#000 10%,#000 55%,#0004 79%,transparent);
-  mask-composite:add;
- }
  .kicker{margin-bottom:.75rem}
  h1{font-size:clamp(2rem,8vw,3rem)}
  .bodycopy{margin:.85rem 0 1rem}
