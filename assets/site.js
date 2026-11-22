@@ -84,8 +84,7 @@ function connectGallery(gallery) {
   const filters = gallery.parentElement.querySelector('.qualification-filters');
   if (filters) {
     const buttons = Array.from(filters.querySelectorAll('[data-qualification-filter]'));
-    filters.hidden = false;
-    buttons.forEach(button => button.addEventListener('click', () => {
+    function selectFilter(button) {
       const category = button.dataset.qualificationFilter;
       buttons.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
       for (const card of rail.children) {
@@ -93,7 +92,12 @@ function connectGallery(gallery) {
       }
       rail.scrollLeft = 0;
       sync();
-      track('qualification_filter', { category });
+    }
+    selectFilter(buttons.find(button => button.getAttribute('aria-pressed') === 'true') || buttons[0]);
+    filters.hidden = false;
+    buttons.forEach(button => button.addEventListener('click', () => {
+      selectFilter(button);
+      track('qualification_filter', { category: button.dataset.qualificationFilter });
     }));
   }
   sync();
