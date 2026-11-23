@@ -219,9 +219,6 @@ dialog button{margin:0 0 .7rem;background:#132234;color:var(--text);border:1px s
  .about-portrait{width:min(58%,11rem)}
 }
 
-.individual-service .cta{margin-top:.9rem}
-.service-details{margin-top:.8rem}
-.service-details summary{color:var(--blue);cursor:pointer;font-weight:700;min-height:44px;align-content:center}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .request-interests{margin-bottom:.9rem}
 .request-interests fieldset{min-width:0;margin:0 0 .8rem;padding:.65rem .8rem .4rem;border:1px solid var(--line);border-radius:.3rem}
@@ -235,8 +232,9 @@ dialog button{margin:0 0 .7rem;background:#132234;color:var(--text);border:1px s
 .section-head>p{max-width:none}
 .contact-grid>div>p{max-width:none}
 .individual-service{display:flex;flex-direction:column;align-items:flex-start}
-.service-actions{margin-top:auto;padding-top:.8rem}
-.service-actions .service-details{margin-top:0}
+.service-actions{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
+.individual-service>.service-actions{margin-top:auto;padding-top:.8rem}
+.format-option>.service-actions{grid-column:1/-1}
 .faq-list details{padding:1rem 0}
 .faq-list p{max-width:none}
 .required-mark{color:var(--orange)}

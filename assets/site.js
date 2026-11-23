@@ -11,6 +11,8 @@ document.addEventListener('click', event => {
     track('format_select', { format: item.dataset.formatChoice });
   } else if (item.dataset.track === 'service_select') {
     track('service_select', { service: item.dataset.serviceChoice });
+  } else if (item.dataset.track === 'service_details_open') {
+    track('service_details_open', { service: item.dataset.serviceId });
   } else if (item.dataset.track) {
     track(item.dataset.track, { placement: item.dataset.placement || 'page' });
   } else {
@@ -228,12 +230,6 @@ if (contactKind) {
       if (name === 'service') track('form_service_change', { service: value, selected: checked });
     });
   }
-  document.querySelectorAll('.service-details').forEach(details => {
-    details.addEventListener('toggle', () => {
-      if (details.open) track('service_details_open', { service: details.dataset.serviceId });
-    });
-  });
-
   form.addEventListener('focusin', () => track('booking_start'), { once: true });
   contactKind.addEventListener('change', () => track('booking_channel_change', { channel: contactKind.value }));
 
