@@ -172,7 +172,7 @@ if (contactKind) {
   const form = document.querySelector('.request-form');
   const status = document.getElementById('form-state');
   const interests = document.getElementById('request-interests');
-  const checked = name => Array.from(interests?.querySelectorAll(`input[name="${name}"]:checked`) ?? [], input => input.value);
+  const checked = name => Array.from(form.querySelectorAll(`input[name="${name}"]:checked`), input => input.value);
 
   if (interests) {
     const back = form.querySelector('.return-to-choice');
