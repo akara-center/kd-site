@@ -277,7 +277,7 @@ if (contactKind) {
 }
 
 const footerContacts = document.querySelector('.footer-contacts');
-footerContacts.addEventListener('submit', async event => {
+footerContacts?.addEventListener('submit', async event => {
   event.preventDefault();
   const channel = event.submitter?.value;
   if (!channel) return;
